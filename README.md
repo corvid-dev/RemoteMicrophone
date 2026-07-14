@@ -10,7 +10,7 @@ Simple low-latency microphone streaming over UDP for Windows.
 
 ## Usage
 
-### Receiver (Gaming PC)
+### Receiver (Remote PC)
 
 1.  Run `rm_rec_v0.2.0.py`.
 2.  Select **CABLE Input** as the output device.
@@ -24,7 +24,7 @@ Simple low-latency microphone streaming over UDP for Windows.
 3.  Enter the receiver IP address.
 4.  Click **Start Streaming**.
 
-Select **CABLE Output** as your microphone in Discord or your game.
+Select **CABLE Output** as your microphone in applications such as Discord or games on the Remote PC.
 
 ## Build
 
