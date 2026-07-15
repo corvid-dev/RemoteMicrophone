@@ -1,37 +1,74 @@
 # RemoteMicrophone
 
-Simple low-latency microphone streaming over UDP for Windows.
+A lightweight, low-latency microphone relay for Windows over a local network.
+
+It is well suited for remote desktop and game streaming environments such as Moonlight, Sunshine, Steam Remote Play, and similar multi-PC setups where a local microphone needs to be available on another computer.
+
+## Features
+
+- Low-latency PCM audio over UDP
+- Simple sender and receiver applications
+- Automatic buffering and clock drift correction
+- Configurable microphone gain
+- Minimal dependencies
 
 ## Requirements
 
--   Python 3.10+
--   Virtual Audio Cable, such as VAC Lite or VB-AudioCable
--   `pip install sounddevice numpy`
+- Windows
+- Python 3.10+
+- `sounddevice`
+- `numpy`
+- A compatible output device (VB-CABLE or VAC-Lite recommended)
+- Sender and receiver should use matching versions.
+
+Install dependencies:
+
+```bash
+pip install sounddevice numpy
+```
+
+## Files
+
+- `RemoteMicrophone-Sender.py` - Captures microphone audio on the **Local PC**.
+- `RemoteMicrophone-Receiver.py` - Receives and plays audio on the **Remote PC**.
+
+## Building
+
+Install PyInstaller:
+
+```bash
+pip install pyinstaller
+```
+
+Build the sender:
+
+```bash
+pyinstaller --onefile --windowed RemoteMicrophone-Sender.py
+```
+
+Build the receiver:
+
+```bash
+pyinstaller --onefile --windowed RemoteMicrophone-Receiver.py
+```
+
+The executables will be created in the `dist` folder.
 
 ## Usage
 
-### Receiver (Remote PC)
+1. **Start Receiving** on the Remote PC.
+2. Note the displayed Remote PC IP address.
+3. Start the sender on the Local PC.
+4. Enter the Remote PC IP address.
+5. Select a microphone.
+6. **Start Streaming** on the Local PC.
 
-1.  Run `rm_rec_v1.0.0.py`.
-2.  Select **CABLE Input** as the output device.
-3.  Copy the displayed IP address.
-4.  Click **Start Listening**.
+## Suggested Applications
 
-### Sender (Local PC)
+- Remote gaming / remote desktop
+- Presentation and conference
+- Multi-PC audio routing
 
-1.  Run `rm_sen_v1.0.0.py`.
-2.  Select your microphone.
-3.  Enter the receiver IP address.
-4.  Click **Start Streaming**.
+## License
 
-On the receiving PC, select **CABLE Output** as your microphone in your desired application (Discord, game, etc).
-
-## Build
-
-Example with PyInstaller:
-
-``` bash
-pip install pyinstaller
-pyinstaller --onefile --windowed rm_rec_v1.0.0.py
-pyinstaller --onefile --windowed rm_sen_v1.0.0.py
-```
+MIT
